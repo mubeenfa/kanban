@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css" integrity="sha512-OQDNdI5rpnZ0BRhhJc+btbbtnxaj+LdQFeh0V9/igiEPDiWE2fG+ZsXl0JEH+bjXKPJ3zcXqNyP4/F/NegVdZg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+            <h2>ToDo App</h2>
+            <div class="add-task">
+                <input id="input-task" type="text" placeholder="Enter a task">
+                <button class="add-button">Add</button>
+            </div>
+            <div class="line"></div>
+            <div class="task-container">
+                <div class="col">
+                    <!-- <div class="todo-col"> -->
+                        <div class="col-header">
+                            <h3>Todo</h3>
+                        </div>
+                        <div id="todo-drop-area" class="dropzone">
+
+                            <!-- <div class="task-card" draggable="true" id="task2">
+                                <input type="text" class="task">
+                                <div class="actionbtns">
+                                    <button class="edit-button"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="delete-button"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </div> -->
+                            
+                        </div>
+                    <!-- </div> -->
+                </div>
+
+                <div class="col">
+                    <!-- <div class="inprogress-col"> -->
+                        <div class="col-header">
+                            <h3>In Progress</h3>
+                        </div>
+                        <div id="inprogress-drop-area" class="dropzone">
+                            
+                        </div>
+                    <!-- </div> -->
+                </div>
+
+                <div class="col">
+                    <!-- <div class="done-col"> -->
+                        <div class="col-header">
+                            <h3>Complete</h3>
+                        </div>
+                        <div id="complete-drop-area" class="dropzone">
+                            
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <script src="main.js" defer></script>
+    <script src="drag.js"></script>
+</body>
+</html>

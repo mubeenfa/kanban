@@ -1,0 +1,181 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Segoe UI';
+}
+
+:root {
+    --mainHeadingFontSize: 2.75vw;
+    --btnFontSize: 1.2vw;
+    --colTitleFontSize: 1.5vw;
+    --taskFontSize: 1.2vw;
+
+
+    /* Primary color:  background color */
+    --primaryBGColor: linear-gradient(120deg, #fdfbfb 0%, #dbe1e4 100%); 
+    --secondaryBGColor: #cbf078; 
+    --tertiaryBGColor: #f1b963;
+
+    --todoTaskColor: #feffdf;
+    --notStartedTaskColor: #f1b963;
+    --inProgressTaskColor: #e46161;
+    --completeTaskColor: #cbf078;
+
+    --addTaskBtnColor: #f1b963;
+    --addTaskFontColor: #fdfbfb;
+
+    --colTodoColor: rgb(170, 163, 163);
+    --colIPColor: rgb(50, 141, 246);
+    --colDoneColor: rgb(91, 236, 47);
+}
+
+.container {
+    max-width: 100vw;
+    max-height: 100vh;
+    background-color: var(--primaryBGColor);
+    padding: 2vw 3vw;
+}
+
+
+.container h2 {
+    font-size: var(--mainHeadingFontSize);
+    font-weight: 700;
+    margin-bottom: 2vw;
+}
+
+.add-task {
+    width: 20vw;
+    height: 2vw;
+    margin: 1vw 0;
+    padding-left: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: .3vw solid var(--secondaryBGColor);
+    border-radius: 10px;
+}
+
+.add-task input {
+    outline: none;
+    border: none;
+    font-size: var(--taskFontSize);
+    font-weight: 500;
+}
+
+.add-task button {
+    width: 6vw;
+    height: 100%;
+    border: none;
+    background-color: var(--addTaskBtnColor);
+    color: var(--addTaskFontColor);
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    font-size: var(--btnFontSize);
+    font-weight: 600;
+}
+
+.line {
+    width: 100%;
+    border: .1vw solid lightgrey;
+}
+
+.task-container {
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content: space-evenly;
+    margin-top: 1.5vw;
+    gap: 15px; 
+}
+
+.col {
+    /* background-color: lightgrey; */
+    width: 24%;  
+    height: 100%;
+}
+
+.col-header h3 {
+    color: var(--colTodoColor);
+}
+
+.inprogress-col h3 {
+    color: var(--colIPColor);
+}
+
+.done-col h3 {
+    color: var(--colDoneColor);
+}
+
+.col h3 {
+    font-size: var(--colTitleFontSize);
+    font-weight: 500;
+    text-align: center;
+}
+
+
+
+.dropzone {
+    width: 100%;
+    min-height: 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: .5vw;
+    flex-shrink: 0;
+    padding: 1vw;
+}
+
+.task-card {
+    height: 3vw;
+    border-radius: 10px;
+    border: .4px solid grey;
+    margin: .3vw 0;
+    position: relative;
+    cursor: move;
+
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, .1);
+}
+
+.isdragging {
+    scale: 1.05;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, .25);
+    color: white;
+}
+
+.task-card input {
+    width: 90%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding-left: 1vw;
+}
+
+.actionbtns {
+    display: none;
+    box-shadow: .1px .1px;
+    border-radius: 4px;
+    position: absolute;
+    top: .3vw;
+    right: .3vw;
+}
+
+.task-card:hover .actionbtns { 
+    display: flex;  
+} 
+
+.editbtn {
+    background-color: #fff;
+    border: .2px solid lightgrey;
+    padding: .2vw .5vw;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.deletebtn {
+    background-color: #fff;
+    border: .2px solid lightgrey;
+    padding: .2vw .5vw;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
