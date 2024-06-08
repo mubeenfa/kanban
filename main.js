@@ -1,5 +1,3 @@
-// import Data from "./KanbanData.js";
-
 const btn_AddTask = document.querySelector(".add-button");
 const btn_EditTask = document.querySelector(".edit-task");
 const btn_DeleteTask = document.querySelector(".delete-button");
@@ -38,6 +36,8 @@ btn_AddTask.addEventListener("click", (e) => {
     GenerateTaskSlab(inp_Task.value, counter);
 
     InsertData(counter, inp_Task.value);
+
+    inp_Task.value = "";
   }
 });
 
@@ -58,17 +58,8 @@ function GenerateTaskSlab(taskTitle, id) {
   const editButton = document.createElement("button");
   editButton.classList = "editbtn";
 
-  // const icon_edit = document.createElement("i");
-  // icon_edit.classList = "fa-solid fa-pen-to-square";
-
   const deleteButton = document.createElement("button");
   deleteButton.classList = "deletebtn";
-
-  // const icon_delete = document.createElement("i");
-  // icon_delete.classList = "fa-solid fa-trash";
-
-  // deleteButton.appendChild(icon_delete);
-  // editButton.appendChild(icon_edit);
 
   actionButtons.appendChild(editButton);
   actionButtons.appendChild(deleteButton);
@@ -77,7 +68,11 @@ function GenerateTaskSlab(taskTitle, id) {
   newTask.appendChild(inputTask);
 
   editButton.addEventListener("click", function(event) {
-    EditTask(event)
+    Edit(event)
+  });
+
+  deleteButton.addEventListener("click", function(event) {
+    Delete(event)
   });
 
   inputTask.addEventListener("focusout", function(event) {
@@ -93,40 +88,97 @@ function GenerateTaskSlab(taskTitle, id) {
   });
 
   todoParent.appendChild(newTask);
-
-  counter = id+1;
-
 }
 
-
-
-
-
-function EditTask(e) {
+function Edit(e) {
   const inputField = e.target.parentElement.parentElement.querySelector('input');
   inputField.disabled = false;
 
   const colId = e.target.parentElement.parentElement;
 }
 
+function Delete(e) {
+  const task = e.target.parentElement.parentElement;
+  const colId = CheckColumn(task.parentElement);
+  const id = parseInt(task.id.split("_")[1])
+
+  DeleteData (task, colId, id);
+}
+
 function EditTaskTitleOnChange(e){
   const inputField = e.target.parentElement.parentElement.querySelector('input');
   const taskId = inputField.parentElement.id.split("_");
   const columnEle = inputField.parentElement.parentElement;
-  let colId;
+  
+  let colId = CheckColumn(columnEle.id);
 
-  if(columnEle.id === "todo-drop-area") {
-    colId = 1;
-  }
-  else if(columnEle.id === "inprogress-drop-area") {
-    colId = 2;
-  }
-  else if(columnEle.id === "complete-drop-area") {
-    colId = 3;
-  }
+
+  // if(columnEle.id === "todo-drop-area") {
+  //   colId = 1;
+  // }
+  // else if(columnEle.id === "inprogress-drop-area") {
+  //   colId = 2;
+  // }
+  // else if(columnEle.id === "complete-drop-area") {
+  //   colId = 3;
+  // }
   
   inputField.disabled = true;
   UpdateTaskTitle(colId, taskId[1], inputField.value);
+}
+
+function CheckColumn(col) {
+  let colId;
+  if(col.id === "todo-drop-area") {
+    colId = 1;
+  }
+  else if(col.id === "inprogress-drop-area") {
+    colId = 2;
+  }
+  else if(col.id === "complete-drop-area") {
+    colId = 3;
+  }
+
+  return colId;
+}
+
+
+function DeleteData(taskDiv, colId, taskId) {
+  // Find the column with the given colId
+  const column = boardData.find(col => col.colId === colId);
+
+  // Check if the column was found
+  if (column) {
+    // Get the array of tasks from the found column
+    const taskArray = column.tasks;
+    // console.log('Original tasks:', taskArray);
+
+    // Filter out the task with the specified taskId
+    const updatedTaskArray = taskArray.filter(task => {
+      // console.log(`Checking task with id ${task.id}`);  // Debug: Log task IDs being checked
+      return task.id !== taskId;
+    });
+
+    // Reassign the filtered tasks back to the column's tasks
+    column.tasks = updatedTaskArray;
+
+    const taskDiv = document.getElementById(`task_${taskId}`);
+
+    if (taskDiv) {
+      taskDiv.remove();
+    }
+  }
+  else {
+    console.log('Column not found');
+  }
+
+  // const taskArray = column.tasks;
+  // console.log(taskArray)
+  // const updatedTaskArray = taskArray.filter(task => task.id !== taskId);
+  // column.tasks = updatedTaskArray;
+
+  // console.log(column.tasks)
+  // console.log(boardData);
 }
 
 function InsertData(taskId, task){
@@ -136,7 +188,7 @@ function InsertData(taskId, task){
    };
 
    boardData[0].tasks.push(newTask);
-   console.log(JSON.stringify(boardData, null, 2));
+   counter++;
 }
 
 function UpdateTaskTitle(colId, taskId, task){
