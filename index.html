@@ -22,32 +22,112 @@
   </head>
   <body>
     <div class="container">
-      <h2>ToDo App</h2>
-      <div class="add-task">
-        <input id="input-task" type="text" placeholder="Enter a task" />
-        <button class="add-button">Add</button>
+      <div class="header">
+        <button onclick="ToggleDarkMode()">Toggle</button>
       </div>
-      <div class="line"></div>
-      <div class="task-container">
-        <div class="col">
-          <div class="col-header">
-            <h3>Todo</h3>
+      <div class="kanban">
+        <div class="main">
+          <h2>ToDo App</h2>
+          <div class="add-task">
+            <input id="input-task" type="text" placeholder="Enter a task" />
+            <button class="add-button">Add</button>
           </div>
-          <div id="todo-drop-area" class="dropzone"></div>
-        </div>
+          <div class="line"></div>
+          <div class="task-container">
+            <div class="col">
+              <div class="col-header">
+                <h3 id="todo-header">Todo</h3>
+              </div>
+              <div id="todo-drop-area" class="dropzone"></div>
+            </div>
 
-        <div class="col">
-          <div class="col-header">
-            <h3>In Progress</h3>
-          </div>
-          <div id="inprogress-drop-area" class="dropzone"></div>
-        </div>
+            <div class="col">
+              <div class="col-header">
+                <h3 id="ip-header">In Progress</h3>
+              </div>
+              <div id="inprogress-drop-area" class="dropzone"></div>
+            </div>
 
-        <div class="col">
-          <div class="col-header">
-            <h3>Complete</h3>
+            <div class="col">
+              <div class="col-header">
+                <h3 id="complete-header">Complete</h3>
+              </div>
+              <div id="complete-drop-area" class="dropzone"></div>
+            </div>
           </div>
-          <div id="complete-drop-area" class="dropzone">
+        </div>
+        <div class="task-detail-panel active">
+          <div class="detail-header">
+            <h1 type="text" id="panel-tasktitle" contenteditable="true">
+              Add New Task Here
+            </h1>
+          </div>
+
+          <div class="detail-table">
+            <div class="table-col">
+              <div class="table-row row-left">Status</div>
+              <div class="table-row row-right">
+                <div class="dropdown">
+                <button id="task-status-button" onclick="StatusDropDownBtn()">ToDo</button>
+                <div id="status-dropdown" class="statusdd">
+                  <button class="status-button" id="todo">ToDo</button>
+                  <button class="status-button" id="inprogress">In Progress</button>
+                  <button class="status-button" id="complete">Complete</button>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="table-col">
+              <div class="table-row row-left">Due Date</div>
+              <div class="table-row row-right">
+                <div class="enddate-div">
+                  <h5>End Date</h5>
+                  <label class="switch">
+                    <input type="checkbox" id="duedatetoggle" />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                <div class="lightline"></div>
+                <div id="taskduedate">
+                  <input class="datepicker" type="date" id="startdate" />
+                  <input
+                    class="datepicker enddate-active"
+                    type="date"
+                    id="enddate"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="table-col" class="table-col">
+              <div class="table-row row-left">Estimates</div>
+              <div class="table-row row-right">
+                <input
+                  type="number"
+                  id="estimate-input"
+                  placeholder="Estimates"
+                />
+              </div>
+            </div>
+            <div class="table-col">
+              <div class="table-row row-left">Priority</div>
+              <div class="table-row row-right">
+                <div class="dropdown">
+                  <button id="task-priority-button" onclick="PriorityDropDownBtn()">Low</button>
+                  <div id="priority-dropdown" class="prioritydd">
+                    <button class="priority-button" id="low">Low</button>
+                    <button class="priority-button" id="medium">Medium</button>
+                    <button class="priority-button" id="high">High</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="table-col">
+              <div class="table-row row-left">Description</div>
+              <div class="table-row row-right">
+                <h4 contenteditable="true" id="task-description"></h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
