@@ -7,6 +7,8 @@ const inp_Task = document.getElementById("input-task");
 const todoParent = document.getElementById("todo-drop-area");
 const inProgressParent = document.getElementById("inprogress-drop-area");
 const completeParent = document.getElementById("complete-drop-area");
+const mainDiv = document.querySelector(".main")
+const taskDetailPanel = document.querySelector(".task-detail-panel");
 
 let currentTaskStatus = "Todo";
 
@@ -29,12 +31,12 @@ const boardData = [
 ];
 
 const taskDetails = {
-  taskTitle: "",
-  dueDate: "",
-  endDate: "",
-  estimates: 0,
-  priority: "",
-  taskDescription: "",
+  "taskTitle": "",
+  "dueDate": "",
+  "endDate": "",
+  "estimates": 0,
+  "priority": "",
+  "taskDescription": "",
 };
 
 let counter = 1;
@@ -70,12 +72,16 @@ function GenerateTaskSlab(taskTitle, id) {
   const actionButtons = document.createElement("div");
   actionButtons.classList = "actionbtns";
 
+  const openButton = document.createElement("button");
+  openButton.classList = "openbtn";
+
   const editButton = document.createElement("button");
   editButton.classList = "editbtn";
 
   const deleteButton = document.createElement("button");
   deleteButton.classList = "deletebtn";
 
+  actionButtons.appendChild(openButton);
   actionButtons.appendChild(editButton);
   actionButtons.appendChild(deleteButton);
 
@@ -88,6 +94,10 @@ function GenerateTaskSlab(taskTitle, id) {
 
   deleteButton.addEventListener("click", function (event) {
     Delete(event);
+  });
+
+  openButton.addEventListener("click", function (event) {
+    Open(event);
   });
 
   inputTask.addEventListener("focusout", function (event) {
@@ -122,10 +132,12 @@ function Delete(e) {
   DeleteData(task, colId, id);
 }
 
-function OpenTask(e) {
+function Open(e) {
   const task = e.target.parentElement.parentElement;
   const colId = CheckColumn(task.parentElement);
   const id = parseInt(task.id.split("_")[1]);
+
+  OpenTask(task, colId, id);
 }
 
 function EditTaskTitleOnChange(e) {
@@ -155,6 +167,11 @@ function CheckColumn(col) {
 // ======================================
 
 // ========== Task CRUD ===============
+function OpenTask(task, colId, id) {
+  taskDetailPanel.classList.add("task-panel-active");
+  mainDiv.style["width"] = "60%";
+}
+
 function DeleteData(taskDiv, colId, taskId) {
   // Find the column with the given colId
   const column = boardData.find((col) => col.colId === colId);
@@ -182,14 +199,6 @@ function DeleteData(taskDiv, colId, taskId) {
   } else {
     console.log("Column not found");
   }
-
-  // const taskArray = column.tasks;
-  // console.log(taskArray)
-  // const updatedTaskArray = taskArray.filter(task => task.id !== taskId);
-  // column.tasks = updatedTaskArray;
-
-  // console.log(column.tasks)
-  // console.log(boardData);
 }
 
 function InsertData(taskId, task) {
@@ -246,6 +255,12 @@ function StatusDropDownBtn(e) {
   dropdown.classList.toggle("show");
 }
 
+function ToggleTaskPanel(e) {
+  taskDetailPanel.classList.remove("task-panel-active");
+  
+  mainDiv.style["width"] = "100%";
+}
+
 ddButtons.forEach(function (btns) {
   btns.addEventListener("click", (e) => {
     const priorityButtonId = e.target;
@@ -298,6 +313,8 @@ window.onclick = function (event) {
     }
   }
 };
+
+
 
 document.getElementById("priority-dropdown")
   .addEventListener("click", function (event) {

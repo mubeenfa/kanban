@@ -57,8 +57,8 @@
 }
 
 .main {
-    /* width: 100%; */
-    min-width: 62vw;
+    width: 100%;
+    
     max-height: 100vh;
     background-color: var(--primaryBGColor);
     padding: 1vw 3vw;
@@ -187,6 +187,8 @@
     border: none;
     outline: none;
     padding-left: 1vw;
+    font-size: 1.5vw;
+    position: absolute;
 }
 
 .actionbtns {
@@ -226,16 +228,31 @@
     height: 1.7vw;
 }
 
+.openbtn {
+    border: .2px solid lightgrey;
+    padding: .2vw .5vw;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-image: url(./images/open.svg);
+    background-size: cover;
+    width: 1.7vw;
+    height: 1.7vw;
+}
+
 
 /* Task Details Window */
 
 .task-detail-panel {
-    width: 30vw;
+    display: none;
+}
+
+.task-panel-active {
+    width: 30%;
     height: 100%;
     position: fixed;
     right: 0;
     border-left: .2px solid lightgray;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -267,7 +284,7 @@
 .table-col {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 90%;
     height: 100%;
     justify-content: flex-start;
     align-items: center;
@@ -277,6 +294,9 @@
 .row-left{
     height: 100%;
     width: 35%;
+    display: flex;
+    align-items: center;
+    color: rgb(99, 98, 98);
 }
 
 .row-right{
@@ -322,11 +342,11 @@
 }
 
 #task-status-button:hover, #task-status-button  tn:focus {
-    background-color: rgb(233, 231, 231);
+    background-color: rgb(208, 208, 208);
 }
 
 #task-priority-button:hover, #task-priority-button  tn:focus {
-    background-color: rgb(231, 231, 229);
+    background-color: rgb(208, 208, 208);
 }
 
 .dropdown {
@@ -428,7 +448,10 @@
 
 #task-description {
     outline: none;
+    height: 2vw;
     font-weight: 100;
+    /* background-color: white; */
+    border: none;
 }
 
 /* Toggle Button Due Date */
@@ -518,6 +541,16 @@
     background: transparent;
   }
 
+  #estimate-input {
+    height: 2vw;
+    border: .1px solid lightgrey;
+    border-radius: 10px;
+    padding-left: .5vw;
+    color: lightgray;
+    font-size: 1vw;
+    font-weight: 350;
+  }
+
   #taskduedate {
     /* background: rgb(237, 234, 234); */
     /* border: .1px solid lightgrey; */
@@ -534,5 +567,4 @@
   #startdate {
     width: 100%;
   }
-
- 
+/* ============================================= */

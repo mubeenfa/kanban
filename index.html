@@ -56,8 +56,9 @@
             </div>
           </div>
         </div>
-        <div class="task-detail-panel active">
+        <div class="task-detail-panel">
           <div class="detail-header">
+            <i id="close-task-panel" class="fa-solid fa-angles-right" onclick="ToggleTaskPanel()"></i>
             <h1 type="text" id="panel-tasktitle" contenteditable="true">
               Add New Task Here
             </h1>
@@ -105,7 +106,7 @@
                 <input
                   type="number"
                   id="estimate-input"
-                  placeholder="Estimates"
+                  placeholder="Estimates e.g: 2"
                 />
               </div>
             </div>
