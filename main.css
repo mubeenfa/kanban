@@ -188,7 +188,7 @@
     outline: none;
     padding-left: 1vw;
     font-size: 1.5vw;
-    position: absolute;
+    /* position: absolute; */
 }
 
 .actionbtns {
