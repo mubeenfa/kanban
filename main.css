@@ -261,11 +261,11 @@
     gap: 3vw;
 }
 
-.detail-header, h1 {
+.detail-header, input {
     width: 100%;
 }
 
-.detail-header h1 {
+.detail-header input {
     outline: none;
     border: none;
     font-size: var(--taskTitleFontSize);
